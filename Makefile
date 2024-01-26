@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 13:26:47 by mbrousse          #+#    #+#              #
-#    Updated: 2024/01/26 14:18:56 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/01/26 16:42:45 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ OBJECTS_CLIENT	= 	${SOURCES_CLIENT:.c=.o}
 
 HEADER			=	project.h
 
-SERVER		=	server
+SERVER			=	server
 
-CLIENT		=	client
+CLIENT			=	client
 
 CC 				=	cc
 
