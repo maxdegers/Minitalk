@@ -6,11 +6,17 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:41:11 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/01/26 19:21:16 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:28:57 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "project.h"
+
+void	ft_give(pid_t pid, int signal)
+{
+	kill(pid, signal);
+	pause();
+}
 
 static int	ft_recursive_power(int nb, int power)
 {
@@ -32,8 +38,7 @@ void	ft_fillzero(int nbr, pid_t pid)
 	{
 		if (ft_recursive_power(2, i) > nbr)
 		{
-			kill(pid, SIGUSR1);
-			usleep(SLEEPTIME);
+			ft_give(pid, SIGUSR1);
 		}
 		i--;
 	}
@@ -52,13 +57,11 @@ void	ft_convert_client(int nbr, pid_t pid)
 	{
 		if (base[nbr] == '0')
 		{
-			kill(pid, SIGUSR1);
-			usleep(SLEEPTIME);
+			ft_give(pid, SIGUSR1);
 		}
 		else if (base[nbr] == '1')
 		{
-			kill(pid, SIGUSR2);
-			usleep(SLEEPTIME);
+			ft_give(pid, SIGUSR2);
 		}
 	}
 }

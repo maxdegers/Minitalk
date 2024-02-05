@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:47:55 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/01/26 19:30:01 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:20:39 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_recursive_power(int nb, int power)
 		return (nb);
 	return (nb * ft_recursive_power(nb, power - 1));
 }
-static void    ft_putbin(int *tab)
+static void    ft_putbin(int *tab, pid_t pid_client)
 {
     int i;
     int r;
@@ -33,13 +33,19 @@ static void    ft_putbin(int *tab)
         r += ft_recursive_power(2, 7 - i) * tab[i];
         i++;
     }
+	if (r == '\0')
+		kill(pid_client, SIGUSR2);
     ft_printf("%c", r);
 }
 
-void    handler(int signal)
+void	handler(int signal, siginfo_t *info, void *ucontext)
 {
 	static size_t   i = 0;
-	static int  tab[8];
+	static int  	tab[8];
+	pid_t			pid_client;
+
+	(void) ucontext;
+	pid_client = info->si_pid;
 	if (signal == SIGUSR1)
 	{
 		tab[i++] = 0;
@@ -48,9 +54,10 @@ void    handler(int signal)
 	{
 		tab[i++] = 1;
 	}
+	kill(pid_client, SIGUSR1);
 	if (i == 8)
 	{
-		ft_putbin(tab);
+		ft_putbin(tab, pid_client);
         while (i > 0)
             tab[i--] = 0;
         tab[i] = 0;

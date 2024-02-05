@@ -6,13 +6,13 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:49:56 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/01/26 19:21:28 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:23:49 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROJECT_H
 # define PROJECT_H
-# define SLEEPTIME 10000
+# define SLEEPTIME 1000
 
 # include "libft/libft.h"
 # include <stdio.h>
@@ -24,5 +24,5 @@
 void	ft_convert_client(int nbr, pid_t pid);
 void	ft_fillzero(int nbr, pid_t pid);
 // server
-void    handler(int signal);
+void	handler(int sig, siginfo_t *info, void *ucontext);
 #endif
