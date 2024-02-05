@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:47:55 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/05 14:20:39 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:58:01 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ void	handler(int signal, siginfo_t *info, void *ucontext)
 	if (signal == SIGUSR1)
 	{
 		tab[i++] = 0;
+		kill(pid_client, SIGUSR1);
 	}
 	if (signal == SIGUSR2)
 	{
 		tab[i++] = 1;
+		kill(pid_client, SIGUSR1);
 	}
-	kill(pid_client, SIGUSR1);
 	if (i == 8)
 	{
 		ft_putbin(tab, pid_client);

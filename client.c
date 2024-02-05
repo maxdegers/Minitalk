@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:26:56 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/05 14:28:53 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:04:40 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handler_client(int signal)
 {
 	if (signal == SIGUSR1)
 	{
-		ft_printf(".");
+		return ;
 	}
 	if (signal == SIGUSR2)
 	{
@@ -31,8 +31,12 @@ int	main(int argc, char const **argv)
 	int					i;
 	struct sigaction	action;
 
-	if (argc < 3)
+	if (argc != 3)
+	{
+		ft_printf("Error: wrong format\n");
+		ft_printf("Try: ./client <PID> <MESSAGE>\n");
 		return (1);
+	}
 	action.sa_handler = &handler_client;
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
