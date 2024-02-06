@@ -6,13 +6,13 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:49:56 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/05 16:57:03 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:37:02 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROJECT_H
 # define PROJECT_H
-# define SLEEPTIME 1000
+# define SLEEPTIME 100
 
 # include "libft/libft.h"
 # include <stdio.h>

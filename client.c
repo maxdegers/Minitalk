@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:26:56 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/05 17:04:40 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:35:43 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	handler_client(int signal)
 	{
 		ft_printf("\nMessage Recive\n");
 	}
-	
-	
 }
 
 int	main(int argc, char const **argv)
