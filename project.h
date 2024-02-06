@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:49:56 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/06 11:37:02 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:47:57 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 # define SLEEPTIME 100
 
 # include "libft/libft.h"
-# include <stdio.h>
 # include <signal.h>
-# include <unistd.h>
 # include <sys/types.h>
 
 // client

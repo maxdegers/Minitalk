@@ -57,18 +57,18 @@ CC = cc
 FLAGS =  -Wall -Wextra -Werror
 
 %.o:%.c  ${HEADER_FILE}
-	${CC} ${FLAGS} -c $< -o $@
+	@${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${OBJECTS} Makefile
-	ar -rc ${NAME} ${OBJECTS}
+	@ar -rc ${NAME} ${OBJECTS}
 
 all: ${NAME}
 
 clean:
-	rm -f ${OBJECTS} ${BONUS_OBJECTS}
+	@rm -f ${OBJECTS} ${BONUS_OBJECTS}
 
 fclean: clean
-	rm -f ${NAME}
+	@rm -f ${NAME}
 
 re: fclean all
 

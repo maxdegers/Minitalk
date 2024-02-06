@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:47:55 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/05 15:58:01 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:24:03 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_recursive_power(int nb, int power)
 		return (nb);
 	return (nb * ft_recursive_power(nb, power - 1));
 }
-static void    ft_putbin(int *tab, pid_t pid_client)
+static int    ft_putbin(int *tab, pid_t pid_client)
 {
     int i;
     int r;
@@ -36,6 +36,7 @@ static void    ft_putbin(int *tab, pid_t pid_client)
 	if (r == '\0')
 		kill(pid_client, SIGUSR2);
     ft_printf("%c", r);
+	return (1);
 }
 
 void	handler(int signal, siginfo_t *info, void *ucontext)
@@ -58,7 +59,9 @@ void	handler(int signal, siginfo_t *info, void *ucontext)
 	}
 	if (i == 8)
 	{
-		ft_putbin(tab, pid_client);
+		
+		if ((ft_putbin(tab, pid_client) != 1))
+			return ;
         while (i > 0)
             tab[i--] = 0;
         tab[i] = 0;
