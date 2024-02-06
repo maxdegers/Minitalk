@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:41:11 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/06 11:37:09 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:43:32 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_give(pid_t pid, int signal)
 {
+	usleep(SLEEPTIME);
 	kill(pid, signal);
 	pause();
-	usleep(SLEEPTIME);
 }
 
 static int	ft_recursive_power(int nb, int power)
@@ -47,7 +47,7 @@ void	ft_fillzero(int nbr, pid_t pid)
 
 void	ft_convert_client(int nbr, pid_t pid)
 {
-	static char *base = "01";
+	static char	*base = "01";
 
 	if (nbr >= 2)
 	{
