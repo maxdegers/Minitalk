@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 13:26:47 by mbrousse          #+#    #+#              #
-#    Updated: 2024/02/07 15:17:01 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/02/07 18:27:25 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,18 +48,20 @@ S_B					=	server_bonus
 
 C_B					=	client_bonus
 
-all: ${CLIENT} ${SERVER}
+
+all: 
+	@make -C ./libft
+	@make ${CLIENT}
+	@make ${SERVER}
 
 %.o:%.c  ${HEADER} libft/libft.h
-	@${CC} ${FLAGS} -c $< -o $@
+	${CC} ${FLAGS} -c $< -o $@
 
-${CLIENT}: ${OBJECTS_CLIENT} Makefile
-	@make -C ./libft
-	@${CC} ${FLAGS} ${OBJECTS_CLIENT} -o ${CLIENT} -L./libft -lft
+${CLIENT}: ${OBJECTS_CLIENT} libft/libft.a Makefile
+	${CC} ${FLAGS} ${OBJECTS_CLIENT} -o ${CLIENT} -L./libft -lft
 
-${SERVER}: ${OBJECTS_SERVER} Makefile
-	@make -C ./libft	
-	@${CC} ${FLAGS} ${OBJECTS_SERVER} -o ${SERVER} -L./libft -lft
+${SERVER}: ${OBJECTS_SERVER} libft/libft.a Makefile
+	${CC} ${FLAGS} ${OBJECTS_SERVER} -o ${SERVER} -L./libft -lft
 
 clean:
 	@make clean -C ./libft
