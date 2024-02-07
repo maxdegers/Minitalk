@@ -6,29 +6,47 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 13:26:47 by mbrousse          #+#    #+#              #
-#    Updated: 2024/02/06 17:15:59 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/02/07 15:17:01 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES_SERVER	=	server.c\
-					server_utils.c
+HEADER				=	project.h
 
-SOURCES_CLIENT	=	client.c\
-					client_utils.c
+SERVER				=	server
 
-OBJECTS_SERVER	= 	${SOURCES_SERVER:.c=.o}
+CLIENT				=	client
 
-OBJECTS_CLIENT	= 	${SOURCES_CLIENT:.c=.o}
+CC 					=	cc
 
-HEADER			=	project.h
+FLAGS 				=	-Wall -Wextra -Werror
 
-SERVER			=	server
+SOURCES_SERVER		=	server.c\
+						server_utils.c
 
-CLIENT			=	client
+SOURCES_CLIENT		=	client.c\
+						client_utils.c
 
-CC 				=	cc
 
-FLAGS 			=	-Wall -Wextra -Werror
+OBJECTS_SERVER		= 	${SOURCES_SERVER:.c=.o}
+
+OBJECTS_CLIENT		= 	${SOURCES_CLIENT:.c=.o}
+
+# BONUS
+H_B					=	project_bonus.h
+
+O_S_B		= 	${S_S_B:.c=.o}
+
+O_C_B		= 	${S_C_B:.c=.o}
+
+S_S_B				=	server_bonus.c\
+						server_utils_bonus.c
+
+S_C_B				=	client_bonus.c\
+						client_utils_bonus.c
+
+S_B					=	server_bonus
+
+C_B					=	client_bonus
 
 all: ${CLIENT} ${SERVER}
 
@@ -45,12 +63,15 @@ ${SERVER}: ${OBJECTS_SERVER} Makefile
 
 clean:
 	@make clean -C ./libft
-	@rm -f ${OBJECTS_CLIENT} ${OBJECTS_SERVER} 
+	@rm -f ${OBJECTS_CLIENT} ${OBJECTS_SERVER} ${O_C_B} ${O_S_B}
 
 fclean: clean
 	@make fclean -C ./libft
-	@rm -f ${CLIENT} ${SERVER}
+	@rm -f ${CLIENT} ${SERVER} ${C_B} ${S_B}
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus:
+	@make HEADER="${H_B}" SERVER="${S_B}" CLIENT="${C_B}" SOURCES_SERVER="${S_S_B}" SOURCES_CLIENT="${S_C_B}"
+
+.PHONY: all clean fclean re bonus
