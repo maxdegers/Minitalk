@@ -6,7 +6,7 @@
 #    By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 13:26:47 by mbrousse          #+#    #+#              #
-#    Updated: 2024/02/07 18:27:25 by mbrousse         ###   ########.fr        #
+#    Updated: 2024/02/07 18:28:25 by mbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,6 @@ S_C_B				=	client_bonus.c\
 S_B					=	server_bonus
 
 C_B					=	client_bonus
-
 
 all: 
 	@make -C ./libft
