@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:26:56 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/06 19:51:34 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:48:15 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	handler_client(int signal)
 	}
 	if (signal == SIGUSR2)
 	{
-		ft_printf("Message Recive\n");
+		ft_printf("Message Received\n");
 	}
 }
 
