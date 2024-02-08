@@ -6,11 +6,13 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:47:55 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/06 19:49:37 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/08 09:52:59 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "project.h"
+
+char	*str = NULL;
 
 static int	ft_recursive_power(int nb, int power)
 {
@@ -23,10 +25,34 @@ static int	ft_recursive_power(int nb, int power)
 	return (nb * ft_recursive_power(nb, power - 1));
 }
 
+static int	ft_addchar(char	c)
+{
+	char	*new;
+
+	if (!str)
+	{
+		str = ft_calloc(sizeof(char), 2);
+		if (!str)
+			return (1);
+		str[0] = c;
+	}
+	else
+	{
+		new = ft_calloc(sizeof(char), ft_strlen(str) + 2);
+		if (!str)
+			return (1);
+		ft_memcpy(new, str, ft_strlen(str));
+		free(str);
+		str = new;
+		str[ft_strlen(str)] = c;
+	}
+	return (0);
+}
+
 static int	ft_putbin(int *tab, pid_t pid_client)
 {
-	int		i;
-	int		r;
+	int				i;
+	int				r;
 
 	i = 0;
 	r = 0;
@@ -38,10 +64,16 @@ static int	ft_putbin(int *tab, pid_t pid_client)
 	if (r == '\0')
 	{
 		kill(pid_client, SIGUSR2);
+		ft_printf("%s", str);
+		free(str);
+		str = NULL;
 	}
 	else
-		ft_printf("%c", r);
-	return (1);
+	{
+		if (ft_addchar(r) != 0)
+			return (1);
+	}
+	return (0);
 }
 
 void	handler(int signal, siginfo_t *info, void *ucontext)
@@ -60,7 +92,7 @@ void	handler(int signal, siginfo_t *info, void *ucontext)
 	kill(pid_client, SIGUSR1);
 	if (i == 8)
 	{
-		if ((ft_putbin(tab, pid_client) != 1))
+		if ((ft_putbin(tab, pid_client) != 0))
 			return ;
 		while (i > 0)
 			tab[i--] = 0;
