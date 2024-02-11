@@ -6,13 +6,13 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:47:55 by mbrousse          #+#    #+#             */
-/*   Updated: 2024/02/08 09:54:52 by mbrousse         ###   ########.fr       */
+/*   Updated: 2024/02/11 01:52:08 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "project.h"
 
-char	*str = NULL;
+char	*g_str = NULL;
 
 static int	ft_recursive_power(int nb, int power)
 {
@@ -25,26 +25,26 @@ static int	ft_recursive_power(int nb, int power)
 	return (nb * ft_recursive_power(nb, power - 1));
 }
 
-static int	ft_addchar(char	c)
+static int	ft_addchar(char c)
 {
 	char	*new;
 
-	if (!str)
+	if (!g_str)
 	{
-		str = ft_calloc(sizeof(char), 2);
-		if (!str)
+		g_str = ft_calloc(sizeof(char), 2);
+		if (!g_str)
 			return (1);
-		str[0] = c;
+		g_str[0] = c;
 	}
 	else
 	{
-		new = ft_calloc(sizeof(char), ft_strlen(str) + 2);
-		if (!str)
+		new = ft_calloc(sizeof(char), ft_strlen(g_str) + 2);
+		if (!g_str)
 			return (1);
-		ft_memcpy(new, str, ft_strlen(str));
-		free(str);
-		str = new;
-		str[ft_strlen(str)] = c;
+		ft_memcpy(new, g_str, ft_strlen(g_str));
+		free(g_str);
+		g_str = new;
+		g_str[ft_strlen(g_str)] = c;
 	}
 	return (0);
 }
@@ -64,9 +64,9 @@ static int	ft_putbin(int *tab, pid_t pid_client)
 	if (r == '\0')
 	{
 		kill(pid_client, SIGUSR2);
-		ft_printf("%s", str);
-		free(str);
-		str = NULL;
+		ft_printf("%s", g_str);
+		free(g_str);
+		g_str = NULL;
 	}
 	else
 	{
